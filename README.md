@@ -1,150 +1,186 @@
-﻿# AI-Based Coconut Tree Disease Detection and Recommendation System
+# 🌴 AgriCocoScan – AI-Based Coconut Disease Detection System
 
-This project is an end-to-end deep learning web app to detect coconut leaf diseases and recommend treatments.
+AgriCocoScan is an AI-powered web application that detects diseases in coconut plants using deep learning and computer vision.
+The system analyzes images of coconut leaves and predicts the disease type, helping farmers identify plant health issues early and apply proper treatments.
 
-## Project Structure
+---
 
-```text
-coconut-disease-detection/
-|-- dataset/
-|-- model/
-|-- train_model.py
-|-- predict.py
-|-- backend/
-|   `-- app.py
-|-- frontend/
-|   |-- templates/
-|   |   `-- index.html
-|   `-- static/
-|       |-- style.css
-|       `-- script.js
-|-- uploads/
-|-- requirements.txt
-`-- README.md
+## 📌 Project Overview
+
+Coconut trees are tall and diseases often go unnoticed until they spread widely.
+AgriCocoScan solves this problem by using a Convolutional Neural Network (CNN) model to detect diseases from leaf images.
+
+Users can upload a coconut leaf image through the web interface, and the system predicts the disease along with possible recommendations.
+
+---
+
+## 🎯 Key Features
+
+* 🌿 Coconut leaf disease detection using deep learning
+* 📷 Image upload interface for prediction
+* 🧠 CNN-based image classification model
+* 📊 Confidence score for predictions
+* 💊 Treatment recommendations for detected diseases
+* 🌐 Simple and user-friendly web interface
+
+---
+
+## 🧠 Diseases Detected
+
+The model is trained to detect the following coconut leaf conditions:
+
+* Healthy Leaves
+* WCLWD Yellowing
+* WCLWD Flaccidity
+* WCLWD Drying of Leaflets
+* CCI Leaflets
+* CCI Caterpillars
+
+---
+
+## 🏗️ Project Architecture
+
+User Upload Image
+↓
+Frontend (HTML / CSS / JavaScript)
+↓
+Flask Backend API
+↓
+Deep Learning Model (CNN)
+↓
+Disease Prediction
+↓
+Display Result + Recommendation
+
+---
+
+## ⚙️ Tech Stack
+
+### Machine Learning
+
+* Python
+* TensorFlow / Keras
+* OpenCV
+* NumPy
+* Matplotlib
+
+### Backend
+
+* Flask
+
+### Frontend
+
+* HTML
+* CSS
+* JavaScript
+
+### Version Control
+
+* Git
+* GitHub
+
+---
+
+## 📂 Project Structure
+
+```
+AgriCocoScan
+│
+├── backend
+│   └── app.py
+│
+├── frontend
+│   ├── templates
+│   │   ├── index.html
+│   │   ├── login.html
+│   │   ├── signup.html
+│   │   └── auth.html
+│   │
+│   └── static
+│       ├── style.css
+│       └── script.js
+│
+├── train_model.py
+├── predict.py
+├── requirements.txt
+└── README.md
 ```
 
-## Supported Classes
+---
 
-- WCLWD_Yellowing
-- WCLWD_Flaccidity
-- WCLWD_DryingofLeaflets
-- Healthy_Leaves
-- CCI_Leaflets
-- CCI_Caterpillars
+## 📊 Dataset
 
-## Treatment Recommendations
+The dataset consists of labeled coconut leaf images representing different disease categories.
 
-- `WCLWD_Yellowing`: Apply micronutrient spray and improve soil drainage.
-- `WCLWD_Flaccidity`: Apply organic fertilizer and ensure proper irrigation.
-- `WCLWD_DryingofLeaflets`: Remove infected leaves and apply fungicide.
-- `CCI_Leaflets`: Use appropriate insecticide treatment and monitor spread.
-- `CCI_Caterpillars`: Apply biological pest control or neem oil treatment.
-- `Healthy_Leaves`: No treatment needed. Maintain regular coconut tree care.
+Images were collected from:
 
-## Setup
+* Agricultural research sources
+* Public image datasets
+* Web resources
 
-1. Create and activate a Python virtual environment.
+Note: The dataset is not included in this repository due to size limitations.
 
-```bash
-python -m venv .venv
-# Windows PowerShell
-.venv\Scripts\Activate.ps1
+---
+
+## 🚀 How to Run the Project
+
+### 1️⃣ Clone the repository
+
+```
+git clone https://github.com/Pavithra406/AgriCocoScan.git
 ```
 
-2. Install dependencies.
+### 2️⃣ Navigate to the project folder
 
-```bash
+```
+cd AgriCocoScan
+```
+
+### 3️⃣ Install dependencies
+
+```
 pip install -r requirements.txt
 ```
 
-3. Ensure dataset directory exists as one of these formats:
+### 4️⃣ Train the model
 
-```text
-dataset/
-  <class_1>/
-  <class_2>/
-  ...
 ```
-
-or
-
-```text
-dataset/
-  train/
-    <class_1>/
-    ...
-  val/
-    <class_1>/
-    ...
-```
-
-If only `dataset/train` exists, `train_model.py` automatically creates validation split from train data.
-
-## Train the Model
-
-```bash
 python train_model.py
 ```
 
-Outputs:
-- `model/coconut_disease_model.h5`
-- `model/class_map.json`
-- `model/training_plot.png`
+### 5️⃣ Run the application
 
-## Run Inference from CLI
-
-```bash
-python predict.py path/to/image.jpg
 ```
-
-## Run Web App
-
-```bash
 python backend/app.py
 ```
 
-Open browser:
-- `http://127.0.0.1:5000`
+### 6️⃣ Open in browser
 
-## API Endpoints
-
-### `POST /upload`
-Upload image file using multipart form-data key: `image`.
-
-Sample response:
-
-```json
-{
-  "message": "File uploaded successfully.",
-  "filename": "uuid.jpg",
-  "file_path": ".../uploads/uuid.jpg"
-}
+```
+http://localhost:5000
 ```
 
-### `POST /predict`
-Two options:
-1. Send multipart image directly with key `image`.
-2. Send JSON body with uploaded filename:
+---
 
-```json
-{
-  "filename": "uuid.jpg"
-}
-```
+## 📸 Future Improvements
 
-Sample response:
+* Support for coconut fruit and stem disease detection
+* Drone-based plant monitoring
+* Mobile application for farmers
+* Real-time disease monitoring dashboard
 
-```json
-{
-  "disease": "WCLWD_Yellowing",
-  "confidence": "94.12%",
-  "solution": "Apply micronutrient spray and improve soil drainage."
-}
-```
+---
 
-## Notes
+## 👩‍💻 Author
 
-- Input images are resized to `224x224` and normalized to `[0,1]`.
-- Training uses data augmentation with `ImageDataGenerator`.
-- Max upload size is 10 MB.
-- Invalid/non-image files are rejected with proper error messages.
+**Pavithra Thangadurai**
+B.Tech Information Technology
+
+GitHub:
+https://github.com/Pavithra406
+
+---
+
+## ⭐ Acknowledgment
+
+This project was developed as part of an academic initiative to explore the application of Artificial Intelligence in agriculture for early disease detection and smart farming.
