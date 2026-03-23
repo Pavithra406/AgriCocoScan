@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign In — CoconutAI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+<body>
+  <div class="scene">
+    <div class="scene-bg"></div>
+    <div class="orb orb-a"></div><div class="orb orb-b"></div><div class="orb orb-c"></div>
+    <div class="grid-lines"></div>
+    <span class="particle" style="left:15%; animation-duration:18s; animation-delay:0s">🍃</span>
+    <span class="particle" style="left:80%; animation-duration:14s; animation-delay:-7s">🌿</span>
+  </div>
+
+  <main class="page">
+    <div class="card auth-card">
+      <div class="card-hero">
+        <div class="hero-brand">
+          <div class="hero-logo">🥥</div>
+          <div class="hero-wordmark">
+            <strong>CoconutAI</strong>
+            <span>Plant Health Intelligence</span>
+          </div>
+        </div>
+        <div class="hero-tag"><span class="dot"></span> Sign In</div>
+        <h1 class="hero-heading">Welcome<br><em>back</em></h1>
+        <p class="hero-sub">Access your dashboard to detect coconut leaf diseases with AI.</p>
+      </div>
+      <div class="card-body">
+        {% if error %}
+        <div class="err-box on" style="margin-bottom:20px;"><span>⚠️</span><span>{{ error }}</span></div>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('login') }}">
+          <div class="f-stack">
+            <div class="f-field">
+              <label for="uid">User ID</label>
+              <input id="uid" type="text" name="user_id" placeholder="Enter your user ID" required/>
+            </div>
+            <div class="f-field">
+              <label for="pw">Password</label>
+              <div class="pw-wrap">
+                <input id="pw" type="password" name="password" placeholder="••••••••" required/>
+                <button type="button" class="pw-toggle" onclick="togglePw('pw',this)">👁</button>
+              </div>
+            </div>
+            <button type="submit" class="btn-submit">Sign In →</button>
+          </div>
+        </form>
+
+        <p class="auth-switch">Don't have an account? <a href="{{ url_for('signup_page') }}">Create one free</a></p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function togglePw(id, btn) {
+      const el = document.getElementById(id);
+      el.type = el.type === 'text' ? 'password' : 'text';
+      btn.style.opacity = el.type === 'password' ? '1' : '0.5';
+    }
+  </script>
+</body>
+</html>

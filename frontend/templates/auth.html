@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CoconutAI — Sign In</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+<body>
+
+  <div class="scene">
+    <div class="scene-bg"></div>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+    <div class="grid-lines"></div>
+    <span class="particle" style="left:10%; animation-duration:18s; animation-delay:0s">🍃</span>
+    <span class="particle" style="left:50%; animation-duration:14s; animation-delay:-6s">🌿</span>
+    <span class="particle" style="left:85%; animation-duration:22s; animation-delay:-10s">🌱</span>
+  </div>
+
+  <main class="page">
+    <div class="card auth-card">
+
+      <!-- Hero -->
+      <div class="card-hero">
+        <div class="hero-brand">
+          <div class="hero-logo">🥥</div>
+          <div class="hero-wordmark">
+            <strong>CoconutAI</strong>
+            <span>Plant Health Intelligence</span>
+          </div>
+        </div>
+        <div class="hero-tag"><span class="dot"></span> Secure Access</div>
+        <h1 class="hero-heading">Welcome<br>to <em>CoconutAI</em></h1>
+        <p class="hero-sub">Sign in or create a free account to start detecting coconut leaf diseases with AI precision.</p>
+      </div>
+
+      <!-- Body -->
+      <div class="card-body">
+
+        {% if error %}
+        <div class="err-box on" style="margin-bottom:20px;">
+          <span>⚠️</span><span>{{ error }}</span>
+        </div>
+        {% endif %}
+
+        <!-- Tabs -->
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab('login',this)">Sign In</button>
+          <button class="tab-btn"        onclick="switchTab('signup',this)">Create Account</button>
+        </div>
+
+        <!-- Login -->
+        <div class="tab-pane active" id="tab-login">
+          <form method="POST" action="{{ url_for('login') }}">
+            <div class="f-stack">
+              <div class="f-field">
+                <label for="lid">User ID</label>
+                <input id="lid" type="text" name="user_id" placeholder="Enter your user ID" required/>
+              </div>
+              <div class="f-field">
+                <label for="lpw">Password</label>
+                <div class="pw-wrap">
+                  <input id="lpw" type="password" name="password" placeholder="••••••••" required/>
+                  <button type="button" class="pw-toggle" onclick="togglePw('lpw',this)">👁</button>
+                </div>
+              </div>
+              <button type="submit" class="btn-submit">Sign In →</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Signup -->
+        <div class="tab-pane" id="tab-signup">
+          <form method="POST" action="{{ url_for('signup') }}">
+            <div class="f-stack">
+              <div class="f-field">
+                <label for="sname">Full Name</label>
+                <input id="sname" type="text" name="name" placeholder="Your full name" required/>
+              </div>
+              <div class="f-field">
+                <label for="sid">User ID</label>
+                <input id="sid" type="text" name="user_id" placeholder="Choose a unique ID" required/>
+              </div>
+              <div class="f-field">
+                <label for="spw">Password</label>
+                <div class="pw-wrap">
+                  <input id="spw" type="password" name="password" placeholder="Create a strong password" required/>
+                  <button type="button" class="pw-toggle" onclick="togglePw('spw',this)">👁</button>
+                </div>
+              </div>
+              <button type="submit" class="btn-submit">Create Account →</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function switchTab(name, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const pane = document.getElementById('tab-' + name);
+      pane.classList.add('active');
+    }
+    function togglePw(id, btn) {
+      const inp = document.getElementById(id);
+      const isText = inp.type === 'text';
+      inp.type = isText ? 'password' : 'text';
+      btn.style.opacity = isText ? '0.5' : '1';
+    }
+  </script>
+</body>
+</html>

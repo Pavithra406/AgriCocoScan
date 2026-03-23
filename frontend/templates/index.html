@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CoconutAI — Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+<body>
+
+  <!-- Background scene -->
+  <div class="scene">
+    <div class="scene-bg"></div>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+    <div class="grid-lines"></div>
+    <!-- Floating particles -->
+    <span class="particle" style="left:6%;  animation-duration:16s; animation-delay:0s">🍃</span>
+    <span class="particle" style="left:22%; animation-duration:22s; animation-delay:-5s">🌿</span>
+    <span class="particle" style="left:48%; animation-duration:14s; animation-delay:-9s">🍂</span>
+    <span class="particle" style="left:70%; animation-duration:19s; animation-delay:-3s">🍃</span>
+    <span class="particle" style="left:88%; animation-duration:25s; animation-delay:-13s">🌱</span>
+  </div>
+
+  <main class="page">
+    <div class="card">
+
+      <!-- Hero panel -->
+      <div class="card-hero">
+        <div class="hero-brand">
+          <div class="hero-logo">🥥</div>
+          <div class="hero-wordmark">
+            <strong>CoconutAI</strong>
+            <span>Plant Health Intelligence</span>
+          </div>
+        </div>
+
+        <div class="hero-tag"><span class="dot"></span> AI-Powered</div>
+        <h1 class="hero-heading">
+          Detect <em>Coconut</em><br>Leaf Disease
+        </h1>
+        <p class="hero-sub">
+          Upload a photo of a coconut leaf and our AI instantly identifies the disease and suggests the best treatment.
+        </p>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num">98%</span>
+            <span class="stat-lbl">Accuracy</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">&lt;3s</span>
+            <span class="stat-lbl">Analysis time</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">12+</span>
+            <span class="stat-lbl">Disease types</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="card-body">
+
+        <!-- Session -->
+        <div class="session-row">
+          <div class="user-info">
+            <div class="user-avatar">{{ user_name[0]|upper }}</div>
+            <div>
+              <span class="user-name">{{ user_name }}</span>
+              <span class="user-badge">● Online</span>
+            </div>
+          </div>
+          <form method="POST" action="{{ url_for('logout') }}">
+            <button type="submit" class="btn-logout">Sign out</button>
+          </form>
+        </div>
+
+        <!-- Upload -->
+        <div class="upload-zone" id="uploadZone">
+          <input type="file" id="imageInput" accept="image/*"/>
+          <div class="upload-icon-wrap">🍃</div>
+          <span class="upload-title">Drop your leaf image here</span>
+          <span class="upload-hint">or click to browse</span>
+          <div class="format-badges">
+            <span class="fmt">JPG</span>
+            <span class="fmt">PNG</span>
+            <span class="fmt">WEBP</span>
+          </div>
+        </div>
+
+        <!-- Preview -->
+        <div class="preview-wrap" id="previewWrap">
+          <img id="imagePreview" alt="Leaf preview"/>
+          <div class="preview-bar">
+            <div class="preview-status">
+              <div class="pulse-ring"></div>
+              Ready to analyze
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <button id="predictBtn" disabled>
+          <span class="shimmer"></span>
+          <span>🔬</span>
+          <span>Analyze Leaf Disease</span>
+        </button>
+
+        <!-- Spinner -->
+        <div class="spinner-wrap hidden" id="spinnerWrap">
+          <div class="spinner-visual"></div>
+          <span class="spinner-msg" id="spinnerText">Analyzing…</span>
+        </div>
+
+        <!-- Error -->
+        <div class="err-box" id="errorBox">
+          <span>⚠️</span><span id="errorMsg"></span>
+        </div>
+
+        <!-- Result -->
+        <div class="result-panel" id="resultBox">
+          <div class="result-head">
+            <div class="result-title">
+              <span>🧬</span>
+              <h3>Diagnosis Report</h3>
+            </div>
+            <span class="result-chip">Complete</span>
+          </div>
+          <div class="result-rows">
+            <div class="r-row">
+              <div class="r-ico g">🌿</div>
+              <div>
+                <div class="r-key">Detected Disease</div>
+                <div class="r-val" id="diseaseText">—</div>
+              </div>
+            </div>
+            <div class="r-row">
+              <div class="r-ico y">📊</div>
+              <div style="flex:1">
+                <div class="r-key">Confidence Level</div>
+                <div class="conf-row">
+                  <span class="conf-tag" id="confPill">—</span>
+                  <div class="conf-bar"><div class="conf-fill" id="confFill"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="r-row">
+              <div class="r-ico b">💊</div>
+              <div>
+                <div class="r-key">Recommended Treatment</div>
+                <div class="r-val" id="solutionText">—</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tip -->
+        <div class="tip-bar">
+          <span>💡</span>
+          <span>For best accuracy — use a clear, well-lit close-up showing the affected area of the leaf.</span>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

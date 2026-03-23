@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up — CoconutAI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <main class="page">
+
+    <div class="brand">
+      <div class="brand-icon">🥥</div>
+      <div class="brand-info">
+        <span class="brand-name">CoconutAI</span>
+        <span class="brand-sub">Disease Detection</span>
+      </div>
+    </div>
+
+    <div class="card auth-card">
+
+      <div class="hero">
+        <div class="hero-pill">🌱 Get started</div>
+        <h1>Create your<br><em>account</em></h1>
+        <p>Join CoconutAI and start diagnosing coconut leaf diseases with the power of AI.</p>
+      </div>
+
+      <div class="body">
+
+        {% if error %}
+        <div class="error-box visible" style="margin-bottom:18px;">
+          <span>⚠️</span><span>{{ error }}</span>
+        </div>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('signup') }}">
+          <div class="form-stack">
+            <div class="field">
+              <label for="signup-name">Full Name</label>
+              <input id="signup-name" type="text" name="name" placeholder="Your name" required/>
+            </div>
+            <div class="field">
+              <label for="signup-id">User ID</label>
+              <input id="signup-id" type="text" name="user_id" placeholder="Choose a user ID" required/>
+            </div>
+            <div class="field">
+              <label for="signup-pw">Password</label>
+              <input id="signup-pw" type="password" name="password" placeholder="Create a strong password" required/>
+            </div>
+            <button type="submit" class="submit-btn">Create Account →</button>
+          </div>
+        </form>
+
+        <p class="auth-switch">Already have an account? <a href="{{ url_for('login_page') }}">Sign in</a></p>
+
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
