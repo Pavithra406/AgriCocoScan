@@ -26,6 +26,63 @@
 </div>
 
 ---
+## 📖 Table of Contents
+
+<div align="center">
+
+| Section | Link |
+|---|---|
+| 🌟 Overview | [What is AgriCocoScan?](#-overview) |
+| ✨ Features | [Key Capabilities](#-key-features) |
+| 🦠 Diseases | [What it Detects](#-diseases-detected) |
+| 🏗️ Architecture | [System Design](#-architecture) |
+| ⚙️ Tech Stack | [Tools & Libraries](#-tech-stack) |
+| 📂 Structure | [Project Layout](#-project-structure) |
+| 🚀 Setup | [How to Run](#-getting-started) |
+| 📊 Dataset | [Data Info](#-dataset) |
+| 🔮 Roadmap | [Future Plans](#-future-improvements) |
+| 👩‍💻 Author | [About Me](#-author) |
+
+</div>
+
+---
+
+## 🌟 Overview
+
+<table>
+<tr>
+<td width="60%">
+
+Coconut trees are tall — and diseases often go unnoticed until they've already spread. **AgriCocoScan** bridges that gap using AI.
+
+Upload a photo of a coconut leaf and the system instantly:
+- 🔍 **Identifies** the disease using a trained CNN model
+- 📊 **Shows** confidence scores for the prediction
+- 💊 **Recommends** treatment for the detected condition
+
+Built for farmers, researchers, and agricultural professionals who need fast, reliable plant health diagnostics — no expertise required.
+
+</td>
+<td width="40%" align="center">
+
+```
+🌱 Upload Leaf Image
+        ↓
+🧠 CNN Analyzes Image
+        ↓
+🔬 Disease Predicted
+        ↓
+💊 Recommendation Shown
+        ↓
+✅ Farmer Takes Action
+```
+
+</td>
+</tr>
+</table>
+
+---
+
 
 
 ## ✨ Key Features
